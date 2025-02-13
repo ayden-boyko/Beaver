@@ -28,20 +28,18 @@ go build -o beaver
 ```go
 import (
     "github.com/yourusername/beaver"
-    "github.com/gin-gonic/gin"
+    "net/http"
 )
 
 func main() {
-    r := gin.Default()
-    
-    // Attach Beaver logging middleware
-    r.Use(beaver.LoggingMiddleware())
-    
-    r.GET("/ping", func(c *gin.Context) {
-        c.JSON(200, gin.H{"message": "pong"})
+    mux := http.NewServeMux()
+    mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+        w.Write([]byte("Hello, World!"))
     })
     
-    r.Run(":8080")
+    loggedMux := beaver.LoggingMiddleware(mux)
+    
+    http.ListenAndServe(":8080", loggedMux)
 }
 ```
 
