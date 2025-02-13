@@ -66,12 +66,40 @@ func main() {
 ## Configuration
 Beaver can be configured using environment variables or a config file:
 
+### Using Environment Variables
+Set the following environment variables before running your application:
+```sh
+export BEAVER_LOG_LEVEL=info
+export BEAVER_LOG_OUTPUT=console
+export BEAVER_LOG_FILE=logs/app.log
+```
+
+### Using a Config File
+Beaver also supports configuration via a JSON or YAML file. Example JSON configuration:
+```json
+{
+    "log_level": "info",
+    "log_output": "file",
+    "log_file": "logs/app.log"
+}
+```
+Example YAML configuration:
+```yaml
+log_level: info
+log_output: file
+log_file: logs/app.log
+```
+
+To use a config file, specify the file path when initializing the logger:
+```go
+logger := beaver.NewLoggerFromFile("config.json")
+```
+
 | Environment Variable | Description | Default |
 |----------------------|-------------|---------|
 | `BEAVER_LOG_LEVEL` | Log level (`debug`, `info`, `warn`, `error`) | `info` |
 | `BEAVER_LOG_OUTPUT` | Log output (`console`, `file`, `remote`) | `console` |
 | `BEAVER_LOG_FILE` | File path if `file` output is selected | `logs/app.log` |
-
 
 ## Authors
 - [Ayden](https://github.com/ayden-boyko)
