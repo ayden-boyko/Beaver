@@ -26,6 +26,7 @@ type Config struct {
 	FilePath string `json:"log_file" yaml:"log_file"`
 }
 
+// TODO CONFIGURE OUTPUT based on log_output (console, file, remote services)
 func NewBeaver(filepath string) (*Beaver, error) {
 	// if filepath is empty, use default path
 	if filepath == "" {
@@ -49,6 +50,7 @@ func NewBeaver(filepath string) (*Beaver, error) {
 	}, nil
 }
 
+// TODO CONFIGURE OUTPUT based on log_output (console, file, remote services)
 // NewBeaverFromFile loads Beaver configuration from a file and initializes the Beaver
 func NewBeaverFromFile(filename string) (*Beaver, error) {
 	// Read and parse the configuration file
